@@ -39,16 +39,16 @@ solution_df
 ## # A tibble: 10 x 4
 ##    vec_sample vec_logical vec_char vec_factor
 ##         <dbl> <lgl>       <chr>    <fct>     
-##  1      1.38  TRUE        A        A         
-##  2     -0.849 FALSE       B        B         
-##  3      0.911 TRUE        C        C         
-##  4      2.38  TRUE        D        C         
-##  5      0.547 TRUE        E        B         
-##  6      0.453 TRUE        F        A         
-##  7     -0.905 FALSE       G        A         
-##  8      1.67  TRUE        H        B         
-##  9      1.49  TRUE        I        C         
-## 10      0.432 TRUE        J        C
+##  1    -1.34   FALSE       A        A         
+##  2    -0.894  FALSE       B        B         
+##  3     1.06   TRUE        C        C         
+##  4     0.761  TRUE        D        C         
+##  5    -1.38   FALSE       E        B         
+##  6    -0.232  FALSE       F        A         
+##  7     0.235  TRUE        G        A         
+##  8     0.0847 TRUE        H        B         
+##  9     1.20   TRUE        I        C         
+## 10    -1.20   FALSE       J        C
 ```
 
 Also, we can try to take mean of each of subsets:
@@ -56,9 +56,9 @@ Also, we can try to take mean of each of subsets:
 ``` r
 #Take mean of each vector (we can also ues function "mean(pull(solution_df,col_you_want))" )
 mean(solution_df$vec_sample)
-## [1] 0.7509733
+## [1] -0.1691978
 mean(solution_df$vec_logical)
-## [1] 0.8
+## [1] 0.5
 mean(solution_df$vec_char)
 ## Warning in mean.default(solution_df$vec_char): argument is not numeric or
 ## logical: returning NA
@@ -69,7 +69,7 @@ mean(solution_df$vec_factor)
 ## [1] NA
 ```
 
-This indicate that we can only do numeric calcuation on numbers and logic values. Also, we can deduce from the result that in the logic vectro, `TURE` equals to 1 and `FALSE` equal to 0. ( `8` numbers in `vec_sample` are greater than 0 and `2` numbers in `vec_sample` are not greater than 0)
+This indicate that we can only do numeric calcuation on numbers and logic values. Also, we can deduce from the result that in the logic vectro, `TURE` equals to 1 and `FALSE` equal to 0. ( `5` numbers in `vec_sample` are greater than 0 and `5` numbers in `vec_sample` are not greater than 0)
 
 For characters and factors, the function `mean` will return `NA` (Not a number). This indicate that we cannot take mean or other numeric calculation on them
 
@@ -100,11 +100,11 @@ factor_to_numeric * solution_df$vec_sample
 
 The result can tell us more about the characteristic of these three data type and how they were converted within each function:
 
--   Calculation result after the first transformation is: `1.3804285, 0, 0.9112739, 2.3791678, 0.547197, 0.4525384, 0, 1.6689351, 1.4915669, 0.4318378`. In this transformation, R converted Logic vector to numeric term in this manner: `TURE` = 1 and `FALSE` = 0. For example, `1.3804285`, position `1` in the `vec_sample` remain the same in this result, while `-0.8486786`, position `2` in the sample is equal to `0`in this result.
+-   Calculation result after the first transformation is: `0, 0, 1.0645012, 0.7605796, 0, 0, 0.2354781, 0.0846779, 1.2011129, 0`. In this transformation, R converted Logic vector to numeric term in this manner: `TURE` = 1 and `FALSE` = 0. For example, `1.0645012`, position `3` in the `vec_sample` remain the same in this result, while `-1.339242`, position `1` in the sample is equal to `0`in this result.
 
--   Calculation result after the second transformation is all `NA`. But in the first line of code in this trasformation executed succesfully, and have the result `TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE` as a roll of facter, wich have two item `TRUE` and `FALSE`.Note that is not same as the logic term, which can be convert into 0 and 1. As proved in the calculation of mean, this term cannot do numeric calculations.
+-   Calculation result after the second transformation is all `NA`. But in the first line of code in this trasformation executed succesfully, and have the result `FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE` as a roll of facter, wich have two item `TRUE` and `FALSE`.Note that is not same as the logic term, which can be convert into 0 and 1. As proved in the calculation of mean, this term cannot do numeric calculations.
 
--   Calculation result after the third transformation is `2.760857, -0.8486786, 1.8225478, 4.7583356, 1.094394, 0.9050768, -0.9045342, 3.3378701, 2.9831337, 0.8636756`. In this transformation, R converted factor vector to numeric term in this manner: Factor\_Level 1 = 1, Factor\_Level 2 = 2 etc. The factor name are arragned alphabetically (increasing order, see `?factor` for detail). In this sample, level `FALSE` equal to 1 and level `TRUE` equal to 2. In this example, `-0.8486786` , position `2` in the `vec_sample` is `-0.8486786` (`FALSE = 1`) `1.3804285`, position `1` in the `vec_sample` is `2.760857`(`TRUE = 2`).
+-   Calculation result after the third transformation is `-1.339242, -0.8936864, 2.1290024, 1.5211592, -1.3777785, -0.2319214, 0.4709563, 0.1693558, 2.4022258, -1.1956999`. In this transformation, R converted factor vector to numeric term in this manner: Factor\_Level 1 = 1, Factor\_Level 2 = 2 etc. The factor name are arragned alphabetically (increasing order, see `?factor` for detail). In this sample, level `FALSE` equal to 1 and level `TRUE` equal to 2. In this example, `-1.339242` , position `1` in the `vec_sample` is `-1.339242` (`FALSE = 1`) `1.0645012`, position `3` in the `vec_sample` is `2.1290024`(`TRUE = 2`).
 
 Solution of Question 2
 ----------------------
