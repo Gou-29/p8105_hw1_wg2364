@@ -40,12 +40,12 @@ mean(solution_df$vec_logical)
 mean(solution_df$vec_char)
 mean(solution_df$vec_factor)
 ```
-This indicate that we can only do numeric calcuation on numbers and logic values. Also, we can deduce from the result that in the logic vectro, `TURE` equals to 1 and `FALSE` equal to 0. ( ``r length(solution_df$vec_sample[solution_df$vec_sample>0])`` numbers in `vec_sample` are greater than 0 and ``r length(solution_df$vec_sample[solution_df$vec_sample<=0])`` numbers in `vec_sample` are not greater than 0)
+This indicate that we can only do numeric calculation on numbers and logic values. Also, we can deduce from the result that in the logic vector, `TURE` equals to 1 and `FALSE` equal to 0. ( ``r length(solution_df$vec_sample[solution_df$vec_sample>0])`` numbers in `vec_sample` are greater than 0 and ``r length(solution_df$vec_sample[solution_df$vec_sample<=0])`` numbers in `vec_sample` are not greater than 0)
 
 For characters and factors, the function `mean` will return `NA` (Not a number). This indicate that we cannot take mean or other numeric calculation on them
 
 ###2.3 Data type conversion:
-In this part, we try to do these trnaformations: 
+In this part, we try to do these transformations: 
 
 * Convert the logical vector to numeric, and multiply the random sample by the result
 
@@ -73,10 +73,7 @@ The result can tell us more about the characteristic of these three data type an
 
 * Calculation result after the second transformation is all `NA`. But in the first line of code in this trasformation executed succesfully, and have the result ``r logic_to_factor`` as a roll of facter, wich have two item `TRUE` and `FALSE`.Note that is not same as the logic term, which can be convert into 0 and 1. As proved in the calculation of mean, this term cannot do numeric calculations.
 
-* Calculation result after the third transformation is ``r factor_to_numeric * solution_df$vec_sample``. In this transformation, R converted factor vector to numeric term in this manner: Factor_Level 1 = 1, Factor_Level 2 = 2 etc. The factor name are arragned alphabetically (increasing order, see `?factor` for detail). In this sample, level  `FALSE` equal to 1 and level `TRUE` equal to 2. 
-In this example, ``r (solution_df$vec_sample[solution_df$vec_sample<=0])[1]``
-, position ``r which(solution_df$vec_sample<=0)[1]``  in the `vec_sample` is ``r (factor_to_numeric * solution_df$vec_sample)[which(solution_df$vec_sample<=0)[1]]`` (`FALSE = 1`)
- ``r (solution_df$vec_sample[solution_df$vec_sample>0])[1]``, position ``r which(solution_df$vec_sample>0)[1]`` in the `vec_sample` is ``r (factor_to_numeric * solution_df$vec_sample)[which(solution_df$vec_sample>0)[1]]``(`TRUE = 2`).  
+* Calculation result after the third transformation is ``r factor_to_numeric * solution_df$vec_sample``. In this transformation, R converted factor vector to numeric term in this manner: Factor_Level 1 = 1, Factor_Level 2 = 2 etc. The factor name are arragned alphabetically (increasing order, see `?factor` for detail). In this sample, level  `FALSE` equal to 1 and level `TRUE` equal to 2.  In this example, ``r (solution_df$vec_sample[solution_df$vec_sample<=0])[1]``, position ``r which(solution_df$vec_sample<=0)[1]``  in the `vec_sample` is ``r (factor_to_numeric * solution_df$vec_sample)[which(solution_df$vec_sample<=0)[1]]`` (`FALSE = 1`) ``r (solution_df$vec_sample[solution_df$vec_sample>0])[1]``, position ``r which(solution_df$vec_sample>0)[1]`` in the `vec_sample` is ``r (factor_to_numeric * solution_df$vec_sample)[which(solution_df$vec_sample>0)[1]]``(`TRUE = 2`).  
 
 ##Solution of Question 2
 ###3.1 Overview of the question
@@ -90,10 +87,10 @@ data("penguins", package = "palmerpenguins")
 ```
 ###3.2 Description of the dataset
 We can use `str` function to see an overview of this dataset.  We can also type `?penguins` in the console for a detailed description of all the variables. 
- This dataset have ``r nrow(penguins)`` rows and ``r ncol(penguins)`` colomus. In this dataset, we have 8 variables ``r names(penguins) ``. In these variables, `species`,`island ` are factors with 3 levels; `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`,`body_mass_g` are numbers denoting bill length(millimeters), bill depth(millimeters), flipper length (millimeters), and body mass(grams), have means `r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`; `sex` is a factor denote the sex of the penguin and `year` is an integer range from 2007 to 2009. Missing value of varible `flipper_length_mm` and `penguins$bill_length_mm` are in line ``r which(is.na(penguins$bill_length_mm))[1]`` and ``r which(is.na(penguins$bill_length_mm))[2]``. 
+ This dataset have ``r nrow(penguins)`` rows and ``r ncol(penguins)`` columns. In this dataset, we have 8 variables ``r names(penguins) ``. In these variables, `species`,`island ` are factors with 3 levels; `bill_length_mm`, `bill_depth_mm`,`flipper_length_mm`,`body_mass_g` are numbers denoting bill length(millimeters), bill depth(millimeters), flipper length (millimeters), and body mass(grams), have means `r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`,`r mean(penguins$bill_length_mm)`; `sex` is a factor denote the sex of the penguin and `year` is an integer range from 2007 to 2009. Missing value of variable `flipper_length_mm` and `penguins$bill_length_mm` are in line ``r which(is.na(penguins$bill_length_mm))[1]`` and ``r which(is.na(penguins$bill_length_mm))[2]``. 
  
 ###3.3 Plotting and saving
-Next, we make a scatterplot of `flipper_length_mm` (y) vs `bill_length_mm` (x); color points using the `species` variable. Finally, we use `ggsave` function to save the result in the working directory. 
+Next, we make a scatter plot of `flipper_length_mm` (y) vs `bill_length_mm` (x); color points using the `species` variable. Finally, we use `ggsave` function to save the result in the working directory. 
 ```{r Plotting and saving, collapse = TRUE, message = FALSE, warning = FALSE}
 #Plotting
 Penguins_Scatter <- penguins %>% 
