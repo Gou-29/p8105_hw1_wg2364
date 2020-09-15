@@ -3,7 +3,7 @@ Homework 1
 Wenhao Gou - wg2364
 2020.9.15
 
-1. Overview and preparation:
+1.Overview and preparation:
 ----------------------------
 
 This is the solution of homework 1 for course P8105. To setup, we need to import package `tidyvers` and `palmerpenguins`
